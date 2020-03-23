@@ -1,0 +1,99 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>CodePen - 2027-4</title>
+<style>
+.correct{
+  background:lime;
+}
+
+.incorrect{
+  background:red;
+}
+
+body{
+  background: white;
+  font-family: "Times New Roman", Times, serif;
+  color: pink;
+  
+  background-image: url("https://shanicesmith.files.wordpress.com/2013/05/webquest.png");
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  
+  background-image: url("https://shanicesmith.files.wordpress.com/2013/05/webquest.png");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+</style>
+</head>
+<body translate="no">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<audio id="sad">
+<source src="https://math.seattleacademy.org/garyanderson/snd/sad.mp3" type="audio/mpeg">
+Your browser does not support the audio tag
+</audio>
+<h1>Intro to Software Development</h1>
+<div>Timer: <span id="theTime">0</span> Score: <span id="score">0</span></div>
+<ol>
+<ol>
+<li> Copying somone's code onto your own page is called? <input data-correct="439a55ddf21ba3a3ed67fafa0552c578" /> </li>
+<li> To copy a version of your entire code you use ________ mode... <input data-correct="a603905470e2a5b8c13e96b579ef0dba" /></li>
+<li> Which coding language is most often used for design? <input data-correct="2c56c360580420d293172f42d85dfbed" /></li>
+<li> If you are good at using HTML, CSS, and JS you are called a ________... <input data-correct="393eb74047bb90c8d80dea54218430ee" /></li>
+<li> Gary has us publish our websites using a _______ branch in GitHub... <input data-correct="f03bde11d261f185cbacfa32c1c6538c" /></li>
+</ol>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.12.0/js/md5.min.js'></script>
+<script id="rendered-js">
+console.clear();
+const sad = document.getElementById("sad");
+setInterval(upTime, 1000);
+
+function upTime() {
+  let theTime = Number($("#theTime").text());
+  theTime = theTime + 1;
+  $("#theTime").text(theTime);
+}
+
+$("input").change(onChange);
+
+function onChange(evt) {
+  let correct = $(this).data("correct");
+  let response = $(this).val();
+  
+  console.log(md5(response));
+  if (correct == md5(response)) {
+    $(this)
+      .removeClass("incorrect")
+      .addClass("correct");
+    let theScore = Number($("#score").text());
+    theScore = theScore + 1;
+    $("#score").text(theScore);
+  } else {
+    if (Math.random() > 0.1) {
+      sad.play();
+    }
+    $(this)
+      .removeClass("correct")
+      .addClass("incorrect");
+  }
+}
+    </script>
+</body>
+</html>
